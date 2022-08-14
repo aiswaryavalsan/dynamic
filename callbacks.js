@@ -1,4 +1,4 @@
-const post=[{title:'post1',body:'this is post1',createdAt:new Date().getTime()},{title:'post2',body:'this is post2'}];
+const post=[{title:'post1',body:'this is post1'},{title:'post2',body:'this is post2'}];
 
 function getPosts(){
    
@@ -15,7 +15,7 @@ function createPost(p){
     return new Promise((resolve,reject)=>{
         setTimeout(()=>{
         post.push(p);
-        const error=true;
+        const error=false;
         if(!error)
         {
             resolve();
@@ -45,6 +45,7 @@ function deletePost()
     });
 
 }
+//getPosts();
 createPost({title:'post3',body:'this is post3'}).then(getPosts)
 .catch(err=>console.log(err));
 post.forEach((p)=>{
