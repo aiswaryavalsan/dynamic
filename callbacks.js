@@ -1,4 +1,4 @@
-const post=[{title:'post1',body:'this is post1'},{title:'post2',body:'this is post2'}];
+const post=[{title:'post1',body:'this is post1',lastActivityTime:new Date().getTime()},{title:'post2',body:'this is post2',lastActivityTime:new Date().getTime()}];
 
 function getPosts(){
    
@@ -47,13 +47,25 @@ function deletePost()
 }
 //getPosts();
 createPost({title:'post3',body:'this is post3'}).then(getPosts)
-.catch(err=>console.log(err));
-post.forEach((p)=>{
-const promise=deletePost();
-promise.then();
-promise.catch(err=>console.log(err));
-//p1.then(successCallback, failureCallback);
-});
+console.log(new Date().getTime());
 
-console.log(post);
-//getPosts();
+function updateLastActivityTime(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+            post.lastActivityTime=new Date().getTime();
+            resolve();
+            
+        }, 1000);
+
+    });
+}
+function userupdate(){
+    Promise.all([createPost,updateLastActivityTime]).then(values=>console.log(values));
+
+}
+userupdate();
+//const promise1=Promise.resolve('hello');
+//const promise2=10;
+//const promise3=new Promise((resolve,reject)=>setTimeout(resolve,2000,'good bye'));
+//Promise.all([promise1,promise2,promise3]).then(values=>console.log(values));
+//const lastuseractivitytime=Promise.resolve(new Date().getTime() );
