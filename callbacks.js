@@ -27,9 +27,32 @@ function createPost(p){
 
     });
 }
+function deletePost()
+{
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            post.pop();
+            if(post.length>0)
+            {
+                resolve();
+            }
+            else{
+                reject('array is empty');
+            }
 
+    },1000);
+
+    });
+
+}
 createPost({title:'post3',body:'this is post3'}).then(getPosts)
 .catch(err=>console.log(err));
+post.forEach((p)=>{
+const promise=deletePost();
+promise.then();
+promise.catch(err=>console.log(err));
+//p1.then(successCallback, failureCallback);
+});
 
 console.log(post);
 //getPosts();
